@@ -1,0 +1,6 @@
+framework module Pods_DSChallenge_DSChallengeUITests {
+  umbrella header "Pods-DSChallenge-DSChallengeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
