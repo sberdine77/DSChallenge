@@ -9,8 +9,11 @@
 #import "AppDelegate.h"
 #import "ListViewController.h"
 #import "ListViewViewModel.h"
+#import "ViewModelFactory.h"
 
 @interface SceneDelegate ()
+
+@property ViewModelFactory *viewModelFactory;
 
 @end
 
@@ -21,8 +24,8 @@
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-    
-    ListViewController* vc = [[ListViewController alloc] initWithViewModel:[[ListViewViewModel alloc] init]];
+    self.viewModelFactory = [[ViewModelFactory alloc] init];
+    ListViewController* vc = [[ListViewController alloc] initWithViewModel:[self.viewModelFactory makeListViewViewModel]];
     UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nav;
     self.window.bounds = [[UIScreen mainScreen] bounds];

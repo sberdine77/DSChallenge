@@ -13,6 +13,15 @@
 
 @implementation DetailsViewController
 
+-(instancetype) initWithViewModel: (DetailsViewViewModel *) viewModel {
+    self = [super initWithNibName:nil bundle:nil];
+        if (!self) {
+            return nil;
+        }
+        self.viewModel = viewModel;
+        return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

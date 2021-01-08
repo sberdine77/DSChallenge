@@ -9,4 +9,12 @@
 
 @implementation DetailsViewViewModel
 
+-(instancetype)initWith: (Store *) store {
+    self = [super init];
+    if (self) {
+        self.store = store;
+    }
+    return self;
+}
+
 @end

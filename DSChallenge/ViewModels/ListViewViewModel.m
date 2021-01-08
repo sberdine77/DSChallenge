@@ -6,20 +6,22 @@
 //
 
 #import "ListViewViewModel.h"
+#import "Store.h"
 
 @interface ListViewViewModel ()
 
 @property NSString *allStoresUrl; //API url to fetch all stores
+@property (nonatomic, copy) DetailsViewController* (^viewForSelectedStore)(Store *);
 
 @end
 
 @implementation ListViewViewModel
 
-- (instancetype)init
-{
+-(instancetype)initWith: (DetailsViewController * (^)(Store* store))viewForSelectedStore{
     self = [super init];
     if (self) {
         self.loadingStores = true;
+        self.viewForSelectedStore = viewForSelectedStore;
     }
     return self;
 }

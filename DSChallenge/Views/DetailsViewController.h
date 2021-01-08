@@ -6,10 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailsViewViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailsViewController : UIViewController
+
+@property DetailsViewViewModel *viewModel;
+
+-(instancetype) initWithViewModel: (DetailsViewViewModel *) viewModel;
 
 @end
 

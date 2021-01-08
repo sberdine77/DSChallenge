@@ -24,6 +24,7 @@
 		1D31977825A6637F009B00E1 /* DetailsViewViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D31977725A6637F009B00E1 /* DetailsViewViewModel.m */; };
 		1D31979625A812A4009B00E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D31979525A812A4009B00E1 /* Main.storyboard */; };
 		1D31979C25A81679009B00E1 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D31979B25A81679009B00E1 /* TableViewCell.m */; };
+		1DD41B1125A917A200B5F87B /* ViewModelFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD41B1025A917A200B5F87B /* ViewModelFactory.m */; };
 		2B4BDC271B206637481928DB /* Pods_DSChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D065A452D99DC13E9A2565B /* Pods_DSChallengeTests.framework */; };
 		D925842AFEC1AF906BC0AE5D /* Pods_DSChallenge_DSChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D888530B967158ED88EBEEAA /* Pods_DSChallenge_DSChallengeUITests.framework */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,8 @@
 		1D31979525A812A4009B00E1 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1D31979A25A81679009B00E1 /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		1D31979B25A81679009B00E1 /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		1DD41B0F25A917A200B5F87B /* ViewModelFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewModelFactory.h; sourceTree = "<group>"; };
+		1DD41B1025A917A200B5F87B /* ViewModelFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewModelFactory.m; sourceTree = "<group>"; };
 		28DA7F6C62E80645FDF7850C /* Pods-DSChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSChallenge.debug.xcconfig"; path = "Target Support Files/Pods-DSChallenge/Pods-DSChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		43A90F7DD424FAC45BE8B85D /* Pods-DSChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSChallenge.release.xcconfig"; path = "Target Support Files/Pods-DSChallenge/Pods-DSChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		58C393DF0A74E2DC71301911 /* Pods-DSChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSChallengeTests.release.xcconfig"; path = "Target Support Files/Pods-DSChallengeTests/Pods-DSChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 		1D31977C25A663C8009B00E1 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				1DD41B0F25A917A200B5F87B /* ViewModelFactory.h */,
+				1DD41B1025A917A200B5F87B /* ViewModelFactory.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -480,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D31972425A54451009B00E1 /* main.m in Sources */,
+				1DD41B1125A917A200B5F87B /* ViewModelFactory.m in Sources */,
 				1D31971625A5444C009B00E1 /* ListViewController.m in Sources */,
 				1D31971025A5444C009B00E1 /* AppDelegate.m in Sources */,
 				1D31975025A545F8009B00E1 /* Store.m in Sources */,
