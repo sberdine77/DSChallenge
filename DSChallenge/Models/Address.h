@@ -14,5 +14,8 @@
 
 -(instancetype) initWithDictionary: (NSDictionary *) addressDictionary;
 
+/*Init address directely with strings*/
+-(Address*) initAddressWithStreet: (NSString*) street andNumber: (NSString*) number andNeighborhood: (NSString*) neighborhood andComplement: (NSString*) complement;
+
 @end
 

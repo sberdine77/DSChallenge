@@ -52,4 +52,14 @@
     return self;
 }
 
+-(Address*) initAddressWithStreet: (NSString*) street andNumber: (NSString*) number andNeighborhood: (NSString*) neighborhood andComplement: (NSString*) complement {
+    
+    self.street = street;
+    self.number = number;
+    self.neighborhood = neighborhood;
+    self.complement = complement;
+    
+    return self;
+}
+
 @end

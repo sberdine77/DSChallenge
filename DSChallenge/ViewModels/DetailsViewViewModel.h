@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property Store *store;
 
 -(instancetype)initWith: (Store *) store;
+-(UIImage *)fetchStoreImage;
+-(void) saveStoreImage;
 
 @end
 
