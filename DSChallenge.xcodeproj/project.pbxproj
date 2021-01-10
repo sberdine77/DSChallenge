@@ -24,6 +24,7 @@
 		1D31977825A6637F009B00E1 /* DetailsViewViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D31977725A6637F009B00E1 /* DetailsViewViewModel.m */; };
 		1D31979625A812A4009B00E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D31979525A812A4009B00E1 /* Main.storyboard */; };
 		1D31979C25A81679009B00E1 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D31979B25A81679009B00E1 /* TableViewCell.m */; };
+		1DB5C4EF25AB86B6001D0DF8 /* DetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DB5C4EE25AB86B6001D0DF8 /* DetailsView.xib */; };
 		1DD41B1125A917A200B5F87B /* ViewModelFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD41B1025A917A200B5F87B /* ViewModelFactory.m */; };
 		2B4BDC271B206637481928DB /* Pods_DSChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D065A452D99DC13E9A2565B /* Pods_DSChallengeTests.framework */; };
 		D925842AFEC1AF906BC0AE5D /* Pods_DSChallenge_DSChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D888530B967158ED88EBEEAA /* Pods_DSChallenge_DSChallengeUITests.framework */; };
@@ -78,6 +79,7 @@
 		1D31979525A812A4009B00E1 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1D31979A25A81679009B00E1 /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		1D31979B25A81679009B00E1 /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		1DB5C4EE25AB86B6001D0DF8 /* DetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsView.xib; sourceTree = "<group>"; };
 		1DD41B0F25A917A200B5F87B /* ViewModelFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewModelFactory.h; sourceTree = "<group>"; };
 		1DD41B1025A917A200B5F87B /* ViewModelFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewModelFactory.m; sourceTree = "<group>"; };
 		28DA7F6C62E80645FDF7850C /* Pods-DSChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DSChallenge.debug.xcconfig"; path = "Target Support Files/Pods-DSChallenge/Pods-DSChallenge.debug.xcconfig"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				1D31971F25A54451009B00E1 /* LaunchScreen.storyboard */,
 				1D31979A25A81679009B00E1 /* TableViewCell.h */,
 				1D31979B25A81679009B00E1 /* TableViewCell.m */,
+				1DB5C4EE25AB86B6001D0DF8 /* DetailsView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D31979625A812A4009B00E1 /* Main.storyboard in Resources */,
+				1DB5C4EF25AB86B6001D0DF8 /* DetailsView.xib in Resources */,
 				1D31972125A54451009B00E1 /* LaunchScreen.storyboard in Resources */,
 				1D31971E25A54451009B00E1 /* Assets.xcassets in Resources */,
 			);

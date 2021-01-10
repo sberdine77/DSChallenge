@@ -24,8 +24,9 @@
     return self;
 }
 
--(void) saveStoreImage {
+-(void) saveStoreImage: (UIImage *)image {
     
+    self.store.image = image;
     //Convert UIImage to JPEG representation mantaining quality
     NSData *imageData = UIImageJPEGRepresentation(self.store.image, 1);
     
@@ -72,7 +73,7 @@
     
 }
 
--(UIImage *) fetchStoreImage {
+-(void) fetchStoreImage {
     //Core Data managed object and context setup
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = [[appDelegate persistentContainer] viewContext];
@@ -88,16 +89,32 @@
     NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error != nil) {
         NSLog(@"Error fetching image: %@", error);
-        return [UIImage imageNamed:@"letter_L"];
+        self.store.image = [UIImage imageNamed:@"letter_L"];
     } else if (results.count == 0) {
         NSLog(@"There is no image for this store on database");
-        return [UIImage imageNamed:@"letter_L"];
+        UIImage *tempImage = [UIImage imageNamed:@"letter_L"];
+        self.store.image = tempImage;
     } else {
         NSLog(@"Success fetching image");
         NSManagedObject *storeImage = (NSManagedObject *) [results objectAtIndex:0];
-        UIImage *imageToReturn = [[UIImage alloc] initWithData:[storeImage valueForKey:@"storeImage"]];
-        return imageToReturn;
+        self.store.image = [[UIImage alloc] initWithData:[storeImage valueForKey:@"storeImage"]];
     }
+}
+
+-(void) callStore {
+    NSString *tel = @"tel:";
+    NSString *number = [[[[self.store.phone stringByReplacingOccurrencesOfString:@"(" withString:@""] stringByReplacingOccurrencesOfString:@")" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    NSString *stringToCall = [tel stringByAppendingString:number];
+    //NSLog(stringToCall);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringToCall] options:@{} completionHandler:nil];
+}
+
+-(void) directionsToStore {
+    NSString *address = [[[self.store.address.street stringByAppendingString:self.store.address.number] stringByAppendingString:self.store.address.complement] stringByAppendingString:self.store.address.complement];
+    
+    NSString *url = [NSString stringWithFormat:@"comgooglemaps://?daddr=%@&directionsmode=driving", [address stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]];
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: url] options:@{} completionHandler:nil];
 }
 
 @end

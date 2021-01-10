@@ -6,6 +6,7 @@
 //
 
 #import "DetailsViewController.h"
+#import <ReactiveObjC/ReactiveObjC.h>
 
 @interface DetailsViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -14,7 +15,7 @@
 @implementation DetailsViewController
 
 -(instancetype) initWithViewModel: (DetailsViewViewModel *) viewModel {
-    self = [super initWithNibName:nil bundle:nil];
+    self = [super initWithNibName:@"DetailsView" bundle: [NSBundle mainBundle]];
         if (!self) {
             return nil;
         }
@@ -27,6 +28,8 @@
     // Do any additional setup after loading the view.
     //Interface setup
     self.navigationController.navigationBar.prefersLargeTitles = NO;
+    self.storeImage.layer.borderWidth = 2;
+    self.storeImage.layer.cornerRadius = 5;
     
     //Image picker setup
     self.imagePicker = [[UIImagePickerController alloc] init];
@@ -39,8 +42,16 @@
     self.storeStreet.text = _viewModel.store.address.street;
     self.storeNumber.text = _viewModel.store.address.number;
     self.storeComplement.text = _viewModel.store.address.complement;
+    @weakify(self);
+    [RACObserve(self.viewModel, store.image) subscribeNext:^(UIImage* x) {
+        @strongify(self);
+        if (x != nil) {
+            NSLog(@"Image %@", x.description);
+            self.storeImage.image = x;
+        }
+    }];
     
-    self.storeImage.image = [_viewModel fetchStoreImage];
+    [_viewModel fetchStoreImage];
     
     //Add gesture recognizer leting the Imageview be able to call the image picker
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showCameraOrLibraryAllert)];
@@ -78,9 +89,11 @@
         if(status == PHAuthorizationStatusNotDetermined) {
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
                 //If the app has permission to access this image souce, call the image picker with this image source type
-                self.imagePicker.sourceType = sourceType;
-                self.imagePicker.delegate = self;
-                [self presentViewController:self.imagePicker animated:true completion:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.imagePicker.sourceType = sourceType;
+                    self.imagePicker.delegate = self;
+                    [self presentViewController:self.imagePicker animated:true completion:nil];
+                });
             }];
         }
         //If the app has permission to access this image souce, call the image picker with this image source type
@@ -109,6 +122,21 @@
 
 - (IBAction)editImageButton:(id)sender {
     [self showCameraOrLibraryAllert];
+}
+
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    
+    [self.viewModel saveStoreImage:info[UIImagePickerControllerOriginalImage]];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)callStore:(id)sender {
+    [_viewModel callStore];
+}
+
+- (IBAction)directionsToStore:(id)sender {
+    [_viewModel directionsToStore];
 }
 
 /*

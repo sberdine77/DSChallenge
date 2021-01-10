@@ -11,7 +11,6 @@
 @interface ListViewViewModel ()
 
 @property NSString *allStoresUrl; //API url to fetch all stores
-@property (nonatomic, copy) DetailsViewController* (^viewForSelectedStore)(Store *);
 
 @end
 

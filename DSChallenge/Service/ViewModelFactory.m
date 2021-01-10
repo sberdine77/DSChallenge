@@ -10,7 +10,7 @@
 @implementation ViewModelFactory
 
 -(ListViewViewModel *) makeListViewViewModel {
-    return [[ListViewViewModel alloc] initWith:^DetailsViewController * _Nonnull(Store * _Nonnull store) {
+    return [[ListViewViewModel alloc] initWith:^DetailsViewController * (Store *  store) {
         return [[DetailsViewController alloc] initWithViewModel:[self makeDetailsViewViewModel:store]];
     }];
 }

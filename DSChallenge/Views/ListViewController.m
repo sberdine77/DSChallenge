@@ -84,4 +84,12 @@
     return self.viewModel.storesArray.count;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UIViewController *destination = self.viewModel.viewForSelectedStore(self.viewModel.storesArray[indexPath.row]);
+    
+    [self.navigationController showViewController:destination sender:self];
+    
+}
+
 @end
