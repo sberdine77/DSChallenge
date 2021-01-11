@@ -28,15 +28,24 @@
     // Do any additional setup after loading the view.
     //Interface setup
     self.navigationController.navigationBar.prefersLargeTitles = NO;
-    self.storeImage.layer.borderWidth = 2;
-    self.storeImage.layer.cornerRadius = 5;
+//    self.storeImage.layer.borderWidth = 1;
+//    self.storeImage.layer.cornerRadius = 5;
+    
+    self.imageContainerView.clipsToBounds = false;
+    self.imageContainerView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.imageContainerView.layer.shadowOpacity = 0.5;
+    self.imageContainerView.layer.shadowOffset = CGSizeMake(0, 5);
+    self.imageContainerView.layer.shadowRadius = 5;
+    self.imageContainerView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.imageContainerView.bounds cornerRadius:10].CGPath;
+    
+    self.editButton.layer.cornerRadius = 5;
     
     //Image picker setup
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.delegate = self;
     
     //Filling the fields on the view
-    self.storeId.text = _viewModel.store.storeId;
+    self.storeId.text = [NSString stringWithFormat:@"Id: %@", _viewModel.store.storeId];
     self.storeName.text = _viewModel.store.name;
     self.storePhone.text = _viewModel.store.phone;
     self.storeStreet.text = _viewModel.store.address.street;

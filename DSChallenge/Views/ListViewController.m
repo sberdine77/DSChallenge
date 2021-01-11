@@ -32,10 +32,13 @@
     // Do any additional setup after loading the view.
     
     //Interface setup
+    [self.tableView initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [self.tableView registerClass:TableViewCell.self forCellReuseIdentifier:@"cellId"];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.navigationItem.title = @"Lojas";
+    self.navigationItem.title = @"Marketplace";
+    self.navigationController.navigationBar.prefersLargeTitles = TRUE;
+    
     
     //Loading alert while the API is returning stores data
     self.loadingAlert = [UIAlertController alertControllerWithTitle:@"Aguarde..." message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -69,6 +72,10 @@
     [self.viewModel getAllStores];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.prefersLargeTitles = TRUE;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId" forIndexPath:indexPath];
     if (!cell) {
@@ -90,6 +97,34 @@
     
     [self.navigationController showViewController:destination sender:self];
     
+    [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
+    
 }
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
+    return 45;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 45;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"Lojas";
+}
+
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    CustomHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"customHeader"];
+//    /* Create custom view to display section header... */
+////    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+////    [label setFont:[UIFont boldSystemFontOfSize:20]];
+////    NSString *string = @"Lojas";
+////    /* Section header is in 0th index... */
+////    [label setText:string];
+////    [view addSubview:label];
+////    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+//    return view;
+//}
 
 @end
