@@ -24,6 +24,7 @@
     return self;
 }
 
+/*Save store image to core data if there is one*/
 -(void) saveStoreImage: (UIImage *)image {
     
     self.store.image = image;
@@ -73,6 +74,7 @@
     
 }
 
+/*Fetch store image from core data if there is one*/
 -(void) fetchStoreImage {
     //Core Data managed object and context setup
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -101,6 +103,7 @@
     }
 }
 
+/*Function that checks if the device can make phone calls and returns a completion block with a NSString as the result (URL) and a NSError object */
 -(void) callStore: (void (^)(NSString * _Nullable result, NSError * _Nullable error))callTo {
     NSString *tel = @"tel:";
     NSString *number = [[[[self.store.phone stringByReplacingOccurrencesOfString:@"(" withString:@""] stringByReplacingOccurrencesOfString:@")" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"-" withString:@""];
@@ -116,9 +119,10 @@
     
 }
 
+/*Function that checks if at least one of the two apps (Google Maps or Apple maps) is installed and returns a completion block with a NSMutableArray as result containing arrays describing the name and URL of the installed navigation apps. Example:  [["Apple Maps", URL], ["Google Maps", URL]].*/
 -(void) directionsToStore: (void (^)(NSMutableArray *result))availableMaps {
     
-    NSString *address = [[[[self.store.address.street stringByAppendingString: @" "] stringByAppendingString:self.store.address.number] stringByAppendingString: @" "] stringByAppendingString:self.store.address.complement];
+    NSString *address = [[[[[[self.store.address.street stringByAppendingString: @" "] stringByAppendingString:self.store.address.number] stringByAppendingString: @" "] stringByAppendingString:self.store.address.complement] stringByAppendingString: @" "] stringByAppendingString:self.store.address.neighborhood];
     
     NSString *urlApple = [NSString stringWithFormat:@"http://maps.apple.com/?daddr=%@&dirflg=d", [address stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]];
     

@@ -113,18 +113,4 @@
     return @"Lojas";
 }
 
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    CustomHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"customHeader"];
-//    /* Create custom view to display section header... */
-////    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-////    [label setFont:[UIFont boldSystemFontOfSize:20]];
-////    NSString *string = @"Lojas";
-////    /* Section header is in 0th index... */
-////    [label setText:string];
-////    [view addSubview:label];
-////    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
-//    return view;
-//}
-
 @end
