@@ -123,7 +123,7 @@
     }
     //If the image picker source is not avalieble, leting the user know by an alert
     else {
-        UIAlertController *pickerAlert = [UIAlertController alertControllerWithTitle:@"Erro" message:@"Modo de captura da imagem indisponível" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *pickerAlert = [UIAlertController alertControllerWithTitle:@"Erro" message:@"Modo de captura da imagem indisponível em seu dispositivo." preferredStyle:UIAlertControllerStyleAlert];
         [pickerAlert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:pickerAlert animated:YES completion:nil];
     }
@@ -141,11 +141,44 @@
 }
 
 - (IBAction)callStore:(id)sender {
-    [_viewModel callStore];
+    [_viewModel callStore:^(NSString * _Nullable result, NSError * _Nullable error) {
+        if(error == nil) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result] options:@{} completionHandler:nil];
+        } else {
+            UIAlertController *pickerAlert = [UIAlertController alertControllerWithTitle:@"Erro" message:@"Aplicativo para ligações telefônicas indisponível em seu dispositivo." preferredStyle:UIAlertControllerStyleAlert];
+            [pickerAlert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:pickerAlert animated:YES completion:nil];
+        }
+    }];
 }
 
 - (IBAction)directionsToStore:(id)sender {
-    [_viewModel directionsToStore];
+    [_viewModel directionsToStore:^(NSMutableArray* result) {
+        if (result.count == 0) {
+            UIAlertController *pickerAlert = [UIAlertController alertControllerWithTitle:@"Erro" message:@"Apple Maps e Google Maps não disponíveis" preferredStyle:UIAlertControllerStyleAlert];
+            [pickerAlert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:pickerAlert animated:YES completion:nil];
+        } else {
+            UIAlertController *pickerAlert = [UIAlertController alertControllerWithTitle:@"Escolha o app de navegação" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+
+            //Turning the alert compatible with iPad Apple standards
+            UIPopoverPresentationController *popPresenter = [pickerAlert popoverPresentationController];
+            popPresenter.sourceView = self.mapsButton;
+            popPresenter.sourceRect = self.mapsButton.bounds;
+
+            for (int i = 0; i < result.count; i++) {
+                [pickerAlert addAction:[UIAlertAction actionWithTitle:result[i][0] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: result[i][1]] options:@{} completionHandler:nil];
+                }]];
+            }
+            
+            [pickerAlert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil]];
+            [pickerAlert setModalPresentationStyle:UIModalPresentationPopover];
+            
+            //Presenting the alert
+            [self presentViewController:pickerAlert animated:YES completion:nil];
+        }
+    }];
 }
 
 /*

@@ -101,20 +101,50 @@
     }
 }
 
--(void) callStore {
+-(void) callStore: (void (^)(NSString * _Nullable result, NSError * _Nullable error))callTo {
     NSString *tel = @"tel:";
     NSString *number = [[[[self.store.phone stringByReplacingOccurrencesOfString:@"(" withString:@""] stringByReplacingOccurrencesOfString:@")" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"-" withString:@""];
     NSString *stringToCall = [tel stringByAppendingString:number];
     //NSLog(stringToCall);
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringToCall] options:@{} completionHandler:nil];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://"]]) {
+        callTo(stringToCall, nil);
+    } else {
+        NSError *err = [NSError errorWithDomain: NSURLErrorDomain code:404 userInfo:nil];
+        callTo(nil, err);
+    }
+    
 }
 
--(void) directionsToStore {
-    NSString *address = [[[self.store.address.street stringByAppendingString:self.store.address.number] stringByAppendingString:self.store.address.complement] stringByAppendingString:self.store.address.complement];
+-(void) directionsToStore: (void (^)(NSMutableArray *result))availableMaps {
     
-    NSString *url = [NSString stringWithFormat:@"comgooglemaps://?daddr=%@&directionsmode=driving", [address stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]];
+    NSString *address = [[[[self.store.address.street stringByAppendingString: @" "] stringByAppendingString:self.store.address.number] stringByAppendingString: @" "] stringByAppendingString:self.store.address.complement];
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: url] options:@{} completionHandler:nil];
+    NSString *urlApple = [NSString stringWithFormat:@"http://maps.apple.com/?daddr=%@&dirflg=d", [address stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]];
+    
+    
+    NSString *urlGoogle = [NSString stringWithFormat:@"comgooglemaps://?daddr=%@&directionsmode=driving", [address stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]];
+    
+    NSMutableArray *installedNavigationApps = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
+        NSMutableArray *google = [NSMutableArray array];
+        [google addObject:@"Google Maps"];
+        [google addObject:urlGoogle];
+        [installedNavigationApps addObject:google];
+    } else {
+        NSLog(@"Can't use comgooglemaps://");
+    }
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString: urlApple]]) {
+        NSMutableArray *apple = [NSMutableArray array];
+        [apple addObject:@"Apple Maps"];
+        [apple addObject:urlApple];
+        [installedNavigationApps addObject:apple];
+    }
+    
+    availableMaps(installedNavigationApps);
+    
 }
 
 @end

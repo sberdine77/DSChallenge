@@ -217,15 +217,11 @@
 		1D31974A25A54474009B00E1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1D31971425A5444C009B00E1 /* ListViewController.h */,
-				1D31971525A5444C009B00E1 /* ListViewController.m */,
-				1D31976425A66027009B00E1 /* DetailsViewController.h */,
-				1D31976525A66027009B00E1 /* DetailsViewController.m */,
+				1DB5C51025AD238E001D0DF8 /* TableViewCell */,
+				1DB5C50F25AD2353001D0DF8 /* DetailsView */,
+				1DB5C50E25AD231C001D0DF8 /* ListView */,
 				1D31979525A812A4009B00E1 /* Main.storyboard */,
 				1D31971F25A54451009B00E1 /* LaunchScreen.storyboard */,
-				1D31979A25A81679009B00E1 /* TableViewCell.h */,
-				1D31979B25A81679009B00E1 /* TableViewCell.m */,
-				1DB5C4EE25AB86B6001D0DF8 /* DetailsView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,10 +229,8 @@
 		1D31974B25A5447D009B00E1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				1D31977025A66336009B00E1 /* ListViewViewModel.h */,
-				1D31977125A66336009B00E1 /* ListViewViewModel.m */,
-				1D31977625A6637F009B00E1 /* DetailsViewViewModel.h */,
-				1D31977725A6637F009B00E1 /* DetailsViewViewModel.m */,
+				1DB5C51225AD252E001D0DF8 /* DetailsViewViewmodel */,
+				1DB5C51125AD24FF001D0DF8 /* ListViewViewModel */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -248,6 +242,52 @@
 				1DD41B1025A917A200B5F87B /* ViewModelFactory.m */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		1DB5C50E25AD231C001D0DF8 /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				1D31971425A5444C009B00E1 /* ListViewController.h */,
+				1D31971525A5444C009B00E1 /* ListViewController.m */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		1DB5C50F25AD2353001D0DF8 /* DetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				1D31976425A66027009B00E1 /* DetailsViewController.h */,
+				1D31976525A66027009B00E1 /* DetailsViewController.m */,
+				1DB5C4EE25AB86B6001D0DF8 /* DetailsView.xib */,
+			);
+			path = DetailsView;
+			sourceTree = "<group>";
+		};
+		1DB5C51025AD238E001D0DF8 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1D31979A25A81679009B00E1 /* TableViewCell.h */,
+				1D31979B25A81679009B00E1 /* TableViewCell.m */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		1DB5C51125AD24FF001D0DF8 /* ListViewViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1D31977025A66336009B00E1 /* ListViewViewModel.h */,
+				1D31977125A66336009B00E1 /* ListViewViewModel.m */,
+			);
+			path = ListViewViewModel;
+			sourceTree = "<group>";
+		};
+		1DB5C51225AD252E001D0DF8 /* DetailsViewViewmodel */ = {
+			isa = PBXGroup;
+			children = (
+				1D31977625A6637F009B00E1 /* DetailsViewViewModel.h */,
+				1D31977725A6637F009B00E1 /* DetailsViewViewModel.m */,
+			);
+			path = DetailsViewViewmodel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

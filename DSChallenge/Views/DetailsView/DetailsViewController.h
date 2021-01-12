@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *storeComplement;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIView *imageContainerView;
+@property (weak, nonatomic) IBOutlet UIButton *mapsButton;
 @property UIImagePickerController* imagePicker;
 @property UIAlertController *loadingAlert;
 

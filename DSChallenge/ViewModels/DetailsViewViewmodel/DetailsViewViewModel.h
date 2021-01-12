@@ -13,12 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DetailsViewViewModel : NSObject
 
 @property Store *store;
+//@property (nonatomic, assign) NSMutableArray *installedNavigationApps;
 
 -(instancetype)initWith: (Store *) store;
 -(void)fetchStoreImage;
 -(void) saveStoreImage: (UIImage *)image;
--(void) callStore;
--(void) directionsToStore;
+-(void) callStore: (void (^)(NSString * _Nullable result, NSError * _Nullable error))callTo;
+-(void) directionsToStore: (void (^)(NSMutableArray * result))availableMaps;
 
 @end
 
