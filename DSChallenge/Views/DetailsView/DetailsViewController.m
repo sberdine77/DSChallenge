@@ -51,6 +51,7 @@
     self.storeStreet.text = _viewModel.store.address.street;
     self.storeNumber.text = _viewModel.store.address.number;
     self.storeComplement.text = _viewModel.store.address.complement;
+    self.storeNeighborhood.text = _viewModel.store.address.neighborhood;
     @weakify(self);
     [RACObserve(self.viewModel, store.image) subscribeNext:^(UIImage* x) {
         @strongify(self);

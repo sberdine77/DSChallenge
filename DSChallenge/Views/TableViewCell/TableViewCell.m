@@ -12,7 +12,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    //[self initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cellId"];
+    [self initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:@"cellId"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

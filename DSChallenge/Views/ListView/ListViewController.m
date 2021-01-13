@@ -34,6 +34,7 @@
     //Interface setup
     [self.tableView initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [self.tableView registerClass:TableViewCell.self forCellReuseIdentifier:@"cellId"];
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.navigationItem.title = @"Marketplace";
@@ -74,6 +75,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.prefersLargeTitles = TRUE;
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -81,8 +83,17 @@
     if (!cell) {
         cell = [[TableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cellId"];
     }
-    cell.textLabel.text = self.viewModel.storesArray[indexPath.row].name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Id: %@", self.viewModel.storesArray[indexPath.row].storeId];
+    
+    UIListContentConfiguration *content = [cell defaultContentConfiguration];
+    
+    content.text = self.viewModel.storesArray[indexPath.row].name;
+    content.secondaryText = [NSString stringWithFormat:@"Id: %@", self.viewModel.storesArray[indexPath.row].storeId];
+    
+    cell.contentConfiguration = content;
+    
+//    cell.textLabel.text = self.viewModel.storesArray[indexPath.row].name;
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"Id: %@", self.viewModel.storesArray[indexPath.row].storeId];
+    
     return cell;
 }
 
